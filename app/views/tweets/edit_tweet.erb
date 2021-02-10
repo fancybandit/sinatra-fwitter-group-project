@@ -1,0 +1,24 @@
+<% if is_logged_in?(session) %>
+
+    <% if @user == @tweet.user %>
+
+    <%= @error %>
+
+    <h1><%= @tweet.user.username %>'s Tweet:</h1><br>
+
+    <form action='/tweets/<%= @tweet.id %>' method="post">
+    <input type="hidden" id="hidden" name="_method" value="patch">
+        Content:
+        <input type="text" name="content" value="<%= @tweet.content %>"><br>
+        Update Your Tweet:
+        <button type="submit" name="submit" id="submit">Edit Tweet</button>
+    </form>
+        
+    <a href="/tweets/<%= @tweet.id %>">View Tweet</a>
+    <a href="/tweets/<%= @tweet.id %>/delete">Delete Tweet</a>
+
+    <% end %>
+
+<% else %>
+    <h1> You Must Be Logged in to Edit Tweets </h1>
+<% end %>
